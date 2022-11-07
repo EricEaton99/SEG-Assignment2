@@ -25,7 +25,7 @@ public class ClientConsole implements ChatIF
   /**
    * The default port to connect on.
    */
-  final public static int DEFAULT_PORT = 7795; // **** Changed for E50, EE
+  final public static int DEFAULT_PORT = 5555;
   
   //Instance variables **********************************************
   
@@ -117,7 +117,20 @@ public class ClientConsole implements ChatIF
     {
       host = "localhost";
     }
-    ClientConsole chat= new ClientConsole(host, DEFAULT_PORT);
+    
+
+    // **** Begin Changed for E50, EE
+    try
+    {
+      port = Integer.parseInt(args[1]);
+    }
+    catch(ArrayIndexOutOfBoundsException e)
+    {
+      host = "localhost";
+    }
+    ClientConsole chat= new ClientConsole(host, port);
+    // **** End Changed for E50, EE
+
     chat.accept();  //Wait for console data
   }
 }
